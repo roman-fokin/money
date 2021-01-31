@@ -1,0 +1,20 @@
+<h2> Редактирование криптовалюты </h2>
+<%= form_for :coin, url: coin_path(@coin), method: :patch do |f| %>
+    <% if @coin.errors.any? %>
+        <% @coin.errors.full_messages.each do |msg| %>
+            <div class="alert alert-danger"><%= msg %></div>
+        <% end %>
+    <% end %>
+    <p>
+    Название<br>
+    <%= f.text_field(:title, {:class => 'form-control'}) %>
+    </p>
+    <p>
+    Тикер<br>
+    <%= f.text_field(:ticker, {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+    <%= f.submit("Cохранить", {:class => 'btn btn-success'}) %>
+    </p>
+<% end %>

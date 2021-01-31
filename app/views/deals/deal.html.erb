@@ -1,0 +1,30 @@
+<H1>Список операций с криптовалютой</H1>
+<br>
+<%= link_to "Добавить новую", new_deal_path, :class => 'btn btn-primary' %><br><br>  
+    <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Оперция</th>
+        <th scope="col">Валюта</th>
+        <th scope="col">Количество</th>
+        <th scope="col">Сумма</th>
+        <th scope="col">Действие</th>
+      </tr>
+    </thead>
+    <% counter = 0 %>
+    <% @deal.each do |deal| %>
+        <% counter = counter+1 %> 
+    <tbody>
+      <tr>
+        <td scope="row"><%= counter %></td>
+        <td><%= deal.operation %></td>
+        <td><%= deal.coin %></td>
+        <td><%= deal.number %></td>
+        <td><%= deal.sum %></td>
+        <td><%= link_to "Открыть", deal %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+ 
