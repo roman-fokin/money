@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Оперция</th>
+            <th scope="col">Валюта</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Сумма</th>
+        </tr>
+    </thead>
+    </tbody>
+        <tr>
+            <td><%= @deal.operation %></td>
+            <td><%= @deal.coin %></td>
+            <td><%= @deal.number %></td>
+            <td><%= @deal.sum %></td>
+        </tr>
+    </tbody>
+</table>
+<%= link_to "Редактировать", edit_deal_path(@deal), :class => 'btn btn-warning' %> 
+<%= link_to "Удалить", deal_path(@deal), method: :delete, data: {confirm: "Хотите удалить?"}, :class => 'btn btn-danger' %> 
