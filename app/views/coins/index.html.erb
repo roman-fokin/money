@@ -1,9 +1,10 @@
 <H1>Список доступных криптовалют</H1>
 <hr>
+
 <%= link_to "Добавить новую", new_coin_path, :class => 'btn btn-primary' %><br><br>
 <ul class="list-group ">
-    <% @coin.each do |coin| %>
-        <li class="list-group-item">   <h4><%= link_to coin.title, coin %></h4>
-        <%= coin.ticker %></li>
-    <% end %>
-    </ul>
+  <% @coin.each do |coin| %>
+    <li class="list-group-item">   <h4><%= link_to coin.title, coin %></h4>
+      <%= coin.ticker %></li>
+  <% end %>
+</ul>

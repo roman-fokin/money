@@ -1,23 +1,24 @@
 <h1>Добавление новой операции</h1>
+
 <%= form_for @deal, url:deals_path do |f| %>
-    <% if @deal.errors.any? %>
-        <% @deal.errors.full_messages.each do |msg| %>
-            <div class="alert alert-danger"><%= msg %></div>
-        <% end %>
+  <% if @deal.errors.any? %>
+    <% @deal.errors.full_messages.each do |msg| %>
+      <div class="alert alert-danger"><%= msg %></div>
     <% end %>
+  <% end %>
     
-    <b>Операция</b>
-    <br>
-    <%= f.select( :operation, ["Продажа", "Покупка"], {}, {class: "form-control"}) %>
-    <b>Криптовалюта</b>
-     <br>
-    <%= f.select(:coin, options_for_select(coins_collection, f.object.coin), {}, {class: "form-control"}) %>
-    <b>Количество</b>
-    <br>
-    <%= f.text_field(:number, {:class => 'form-control'}) %>
-    <b>Сумма</b>
-    <br>
-    <%= f.text_field(:sum, {:class => 'form-control'}) %>
-    <br>
-    <%= f.submit("Cохранить", {:class => 'btn btn-success'}) %>
-<% end %>
+  <b>Операция</b>
+  <br>
+  <%= f.select( :operation, ["Продажа", "Покупка"], {}, {class: "form-control"}) %>
+  <b>Криптовалюта</b>
+  <br>
+  <%= f.select(:coin, options_for_select(coins_collection, f.object.coin), {}, {class: "form-control"}) %>
+  <b>Количество</b>
+  <br>
+  <%= f.text_field(:number, {:class => 'form-control'}) %>
+  <b>Сумма</b>
+  <br>
+  <%= f.text_field(:sum, {:class => 'form-control'}) %>
+  <br>
+  <%= f.submit("Cохранить", {:class => 'btn btn-success'}) %>
+  <% end %>
