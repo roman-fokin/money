@@ -1,5 +1,5 @@
-<h1><%= @coin.title %></h1>
-<h5><%= @coin.ticker %></h5>
+<h1><%= get_resource.title %></h1>
+<h5><%= get_resource.ticker %></h5>
 <hr>
-<%= link_to "Редактировать", edit_coin_path(@coin), :class => 'btn btn-warning' %> 
-<%= link_to "Удалить", coin_path(@coin), method: :delete, data: {confirm: "Хотите удалить?"}, :class => 'btn btn-danger' %> 
+<%= link_to "Редактировать", edit_coin_path(get_resource), :class => 'btn btn-warning' %> 
+<%= link_to "Удалить", coin_path(get_resource), method: :delete, data: {confirm: "Хотите удалить?"}, :class => 'btn btn-danger' %> 

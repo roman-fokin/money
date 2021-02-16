@@ -1,7 +1,7 @@
 <h1> Редактирование операции </h1>
-<%= form_for @deal, url: deal_path(@deal), method: :patch do |f| %>
-    <% if @deal.errors.any? %>
-        <% @deal.errors.full_messages.each do |msg| %>
+<%= form_for get_resource, url: deal_path(get_resource), method: :patch do |f| %>
+    <% if get_resource.errors.any? %>
+        <% get_resource.errors.full_messages.each do |msg| %>
             <div class="alert alert-danger"><%= msg %></div>
         <% end %>
     <% end %>
