@@ -9,12 +9,12 @@
     </thead>
     </tbody>
         <tr>
-            <td><%= @deal.operation %></td>
-            <td><%= @deal.coin %></td>
-            <td><%= @deal.number %></td>
-            <td><%= @deal.sum %></td>
+            <td><%= get_resource.operation %></td>
+            <td><%= get_resource.coin %></td>
+            <td><%= get_resource.number %></td>
+            <td><%= get_resource.sum %></td>
         </tr>
     </tbody>
 </table>
-<%= link_to "Редактировать", edit_deal_path(@deal), :class => 'btn btn-warning' %> 
-<%= link_to "Удалить", deal_path(@deal), method: :delete, data: {confirm: "Хотите удалить?"}, :class => 'btn btn-danger' %> 
+<%= link_to "Редактировать", edit_deal_path(get_resource), :class => 'btn btn-warning' %> 
+<%= link_to "Удалить", deal_path(get_resource), method: :delete, data: {confirm: "Хотите удалить?"}, :class => 'btn btn-danger' %> 

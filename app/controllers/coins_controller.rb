@@ -1,45 +1,49 @@
 class CoinsController < ApplicationController
+
+  helper_method :get_resource
+
   def index
     @coin = Coin.all
   end
 
-  def new
-    @coin = Coin.new
-  end
+  def show; end
 
-  def show
-    @coin = Coin.find(params[:id])
-  end
+  def new; end
 
-  def edit
-    @coin = Coin.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @coin = Coin.find(params[:id])
-      if (@coin.update(coin_params))
-        redirect_to @coin
-      else
-        render 'edit'
-      end
+    if get_resource.update(coin_params)
+      redirect_to get_resource
+    else
+      render 'edit'
+    end
   end
 
   def destroy
-    @coin = Coin.find(params[:id])
-    @coin.destroy
+    get_resource.destroy
     redirect_to coins_path
   end
 
   def create
-    @coin = Coin.new(coin_params)
-    if (@coin.save)
-      redirect_to @coin
+    if get_resource.save
+      redirect_to get_resource
     else
       render 'new'
     end
   end
 
-  private def coin_params
-    params.require(:coin).permit(:title, :ticker)
+  private
+
+  def get_resource
+    if params[:id]
+      Coin.find(params[:id])
+    else
+      Coin.new(coin_params)
+    end
+  end
+
+  def coin_params
+    params[:coin] ? params.require(:coin).permit(:title, :ticker) : {}
   end
 end

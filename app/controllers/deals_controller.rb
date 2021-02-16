@@ -1,51 +1,53 @@
 class DealsController < ApplicationController
+
+  helper_method :coins_collection, :get_resource
+
   def deal
     @deal = Deal.all
   end
 
-  def show
-    @deal = Deal.find(params[:id])
-  end
+  def show; end
 
-  def new
-    @deal = Deal.new
-  end
+  def new; end
+
+  def edit; end
 
   def create
-    @deal = Deal.new(deal_params)
-    if @deal.save
-      redirect_to @deal
+    if get_resource.save
+      redirect_to operations_path
     else
       render 'new'
     end
   end
 
-  def edit
-    @deal = Deal.find(params[:id])
-  end
-
   def update
-    @deal = Deal.find(params[:id])
-      if (@deal.update(deal_params))
-        redirect_to @deal
-      else
-        render 'edit'
-      end
+    if get_resource.update(deal_params)
+      redirect_to get_resource
+    else
+      render 'edit'
+    end
   end
 
   def destroy
-    @deal = Deal.find(params[:id])
-    @deal.destroy
+    get_resource.destroy
     redirect_to operations_path
   end
 
-  private def deal_params
-    params.require(:deal).permit(:coin, :operation, :number, :sum)
+  private
+
+  def get_resource
+    if params[:id]
+      Deal.find(params[:id])
+    else
+      Deal.new(deal_params)
+    end
   end
 
-  helper_method :coins_collection
+  def deal_params
+    params[:deal] ? params.require(:deal).permit(:coin, :operation, :number, :sum) : {}
+  end
 
   def coins_collection
-    @coins_collection = Coin.all.order(:title).pluck('title')
+    Coin.all.order(:title).pluck('title')
   end
 end
