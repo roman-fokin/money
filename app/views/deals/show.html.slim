@@ -1,0 +1,14 @@
+table.table
+  thead
+    tr
+      th scope="col"  Оперция
+      th scope="col"  Валюта
+      th scope="col"  Количество
+      th scope="col"  Сумма
+  tr
+    td= get_deal_resource.operation
+    td= get_deal_resource.coin.title
+    td= get_deal_resource.number
+    td= get_deal_resource.sum
+= link_to "Редактировать", edit_deal_path(get_deal_resource), :class => 'btn btn-warning'
+= link_to "Удалить", deal_path(get_deal_resource), method: :delete, data: {confirm: "Хотите удалить?"}, :class => 'btn btn-danger'

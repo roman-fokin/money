@@ -1,19 +1,21 @@
 class DealsController < ApplicationController
-
-  helper_method :coins_collection, :get_resource
+  helper_method :coins_collection, :get_deal_resource
 
   def deal
     @deal = Deal.all
   end
 
-  def show; end
+  def show
+  end
 
-  def new; end
+  def new
+  end
 
-  def edit; end
+  def edit
+  end
 
   def create
-    if get_resource.save
+    if get_deal_resource.save
       redirect_to operations_path
     else
       render 'new'
@@ -21,21 +23,21 @@ class DealsController < ApplicationController
   end
 
   def update
-    if get_resource.update(deal_params)
-      redirect_to get_resource
+    if get_deal_resource.update(deal_params)
+      redirect_to get_deal_resource
     else
       render 'edit'
     end
   end
 
   def destroy
-    get_resource.destroy
+    get_deal_resource.destroy
     redirect_to operations_path
   end
 
   private
 
-  def get_resource
+  def get_deal_resource
     if params[:id]
       Deal.find(params[:id])
     else
@@ -44,10 +46,10 @@ class DealsController < ApplicationController
   end
 
   def deal_params
-    params[:deal] ? params.require(:deal).permit(:coin, :operation, :number, :sum) : {}
+    params[:deal] ? params.require(:deal).permit(:coin_id, :operation, :number, :sum) : {}
   end
 
   def coins_collection
-    Coin.all.order(:title).pluck('title')
+    Coin.all.order(:title)
   end
 end

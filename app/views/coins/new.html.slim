@@ -1,0 +1,15 @@
+h2 Добавление новой криптовалюты
+= form_for :coin, url:coins_path do |f|
+  - if get_coin_resource.errors.any?
+    - get_coin_resource.errors.full_messages.each do |msg|
+      .alert.alert-danger= msg
+  p
+    | Наименование
+    br/
+    = f.text_field(:title, {:class => 'form-control'})
+  p
+    | Тикер
+    br/
+    = f.text_field(:ticker, {:class => 'form-control'})
+  p
+    = f.submit("Cохранить", {:class => 'btn btn-success'})
