@@ -1,0 +1,25 @@
+h1 Список операций с криптовалютой
+br/
+= link_to "Добавить новую", new_deal_path, :class => 'btn btn-primary'
+br/
+br/
+table.table
+  thead
+    tr
+      th scope="col"  #
+      th scope="col"  Оперция
+      th scope="col"  Валюта
+      th scope="col"  Количество
+      th scope="col"  Сумма
+      th scope="col"  Действие
+  - counter = 0
+  - @deal.each do |deal|
+    - counter = counter+1
+    tbody
+      tr
+        td scope="row" = counter
+        td= deal.operation
+        td= deal.coin.title
+        td= deal.number
+        td= deal.sum
+        td= link_to "Открыть", deal

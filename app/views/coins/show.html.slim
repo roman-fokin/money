@@ -1,0 +1,5 @@
+h1= get_coin_resource.title
+h5= get_coin_resource.ticker
+hr/
+= link_to "Редактировать", edit_coin_path(get_coin_resource), :class => 'btn btn-warning'
+= link_to "Удалить", coin_path(get_coin_resource), method: :delete, data: {confirm: "Хотите удалить?"}, :class => 'btn btn-danger'

@@ -1,0 +1,20 @@
+h1 Редактирование операции
+= form_for get_deal_resource, url: deal_path(get_deal_resource), method: :patch do |f|
+  - if get_deal_resource.errors.any?
+    - get_deal_resource.errors.full_messages.each do |msg|
+      .alert.alert-danger= msg
+  p
+    b Операция
+    br/
+    = f.select( :operation, ["Продажа", "Покупка"], {}, {class: "form-control"})
+    b Криптовалюта
+    br/
+    = f.select(:coin_id, options_for_select(coins_collection.map{|x| [x.title, x.id]} ), {}, {class: "form-control"})
+    b Количество
+    br/
+    = f.text_field(:number, {:class => 'form-control'})
+    b Сумма
+    br/
+    = f.text_field(:sum, {:class => 'form-control'})
+    br/
+    = f.submit("Cохранить", {:class => 'btn btn-success'})
