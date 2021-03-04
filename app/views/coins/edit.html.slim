@@ -6,10 +6,10 @@ h2 Редактирование криптовалюты
   p
     | Название
     br/
-    = f.text_field(:title, {:class => 'form-control'})
+    = f.text_field(:title, {:class => 'form-control', value: get_coin_resource.title})
   p
     | Тикер
     br/
-    = f.text_field(:ticker, {:class => 'form-control'})
+    = f.text_field(:ticker, {:class => 'form-control', value: get_coin_resource.ticker})
   p
     = f.submit("Cохранить", {:class => 'btn btn-success'})

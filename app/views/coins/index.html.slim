@@ -3,8 +3,27 @@ hr/
 = link_to "Добавить новую", new_coin_path, :class => 'btn btn-primary'
 br/
 br/
-ul.list-group
+table.table
+  thead
+    tr
+      th scope="col"  #
+      th scope="col"  Монета
+      th scope="col"  Тикер
+      th scope="col"  В кошельке 
+      th scope="col"  Стоимость, $
+      th scope="col"  Действие
+  - counter = 0
   - @coin.each do |coin|
-    li.list-group-item
-      h4= link_to coin.title, coin
-      = coin.ticker
+    - counter = counter+1
+    - number_income = deals_collection.where(operation: "Продажа", coin_id: coin.id).map{|x| x.number}.sum
+    - number_expense = deals_collection.where(operation: "Покупка", coin_id: coin.id).map{|x| x.number}.sum
+    - sum_income = deals_collection.where(operation: "Продажа", coin_id: coin.id).map{|x| x.sum}.sum
+    - sum_expense = deals_collection.where(operation: "Покупка", coin_id: coin.id).map{|x| x.sum}.sum
+    tbody
+      tr
+        td scope="row" = counter
+        td= coin.title
+        td= coin.ticker
+        td= number_expense - number_income
+        td= sum_expense - sum_income
+        td= link_to "Открыть", coin

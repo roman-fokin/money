@@ -1,5 +1,5 @@
 class CoinsController < ApplicationController
-  helper_method :get_coin_resource
+  helper_method :get_coin_resource, :deals_collection
 
   def index
     @coin = Coin.all
@@ -47,5 +47,9 @@ class CoinsController < ApplicationController
 
   def coin_params
     params[:coin] ? params.require(:coin).permit(:title, :ticker) : {}
+  end
+
+  def deals_collection
+    Deal.all.order(:coin_id)
   end
 end
