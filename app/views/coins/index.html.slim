@@ -6,24 +6,18 @@ br/
 table.table
   thead
     tr
-      th scope="col"  #
+      th scope="col"  id
       th scope="col"  Монета
       th scope="col"  Тикер
       th scope="col"  В кошельке 
       th scope="col"  Стоимость, $
       th scope="col"  Действие
-  - counter = 0
   - @coin.each do |coin|
-    - counter = counter+1
-    - number_income = deals_collection.where(operation: "Продажа", coin_id: coin.id).map{|x| x.number}.sum
-    - number_expense = deals_collection.where(operation: "Покупка", coin_id: coin.id).map{|x| x.number}.sum
-    - sum_income = deals_collection.where(operation: "Продажа", coin_id: coin.id).map{|x| x.sum}.sum
-    - sum_expense = deals_collection.where(operation: "Покупка", coin_id: coin.id).map{|x| x.sum}.sum
     tbody
       tr
-        td scope="row" = counter
+        td scope="row" = coin.id
         td= coin.title
         td= coin.ticker
-        td= number_expense - number_income
-        td= sum_expense - sum_income
+        td= coin.number_amount
+        td= coin.sum_amount
         td= link_to "Открыть", coin

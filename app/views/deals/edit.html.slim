@@ -6,7 +6,7 @@ h1 Редактирование операции
   p
     b Операция
     br/
-    = f.select( :operation, ["Продажа", "Покупка"], {}, {class: "form-control"})
+    = f.select( :operation, ["Sale", "Buy"], {}, {class: "form-control"})
     b Криптовалюта
     br/
     = f.select(:coin_id, options_for_select(coins_collection.map{|x| [x.title, x.id]} ), {}, {class: "form-control"})
