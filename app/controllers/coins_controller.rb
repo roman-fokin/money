@@ -23,6 +23,7 @@ class CoinsController < ApplicationController
   end
 
   def destroy
+
     get_coin_resource.destroy
     redirect_to coins_path
   end
@@ -47,9 +48,5 @@ class CoinsController < ApplicationController
 
   def coin_params
     params[:coin] ? params.require(:coin).permit(:title, :ticker) : {}
-  end
-
-  def deals_collection
-    Deal.all.order(:coin_id)
   end
 end
