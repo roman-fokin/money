@@ -15,7 +15,8 @@ html
       p.h5.my-0.mr-md-auto.fw-bold Менеджер криптовалюты
       nav.my-2.my-md-0.mr-md-3
         span.p-2.text-dark= link_to "Главная страница", home_path
-        span.p-2.text-dark= link_to "Мои операции", operations_path
+        - if current_user
+          span.p-2.text-dark= link_to "Мои операции", operations_path
       nav.navbar.navbar-inverse
         .container
           #navbar

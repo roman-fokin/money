@@ -1,8 +1,9 @@
-class DealsController < ApplicationController
+class DealsController < UserAuth
+  skip_before_action :check_authentication, only:  :new
   helper_method :coins_collection, :get_deal_resource
 
   def deal
-    @deal = Deal.all
+    @deal = current_user.deals.all
   end
 
   def show
@@ -39,9 +40,9 @@ class DealsController < ApplicationController
 
   def get_deal_resource
     if params[:id]
-      Deal.find(params[:id])
+      current_user.deals.find(params[:id])
     else
-      Deal.new(deal_params)
+      current_user.deals.new(deal_params)
     end
   end
 
