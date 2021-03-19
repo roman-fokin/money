@@ -1,6 +1,7 @@
 h1 Список доступных криптовалют
 hr/
-= link_to "Добавить новую", new_coin_path, :class => 'btn btn-primary'
+- if current_user
+  = link_to "Добавить новую", new_coin_path, :class => 'btn btn-primary'
 br/
 br/
 table.table
@@ -18,6 +19,10 @@ table.table
         td scope="row" = coin.id
         td= coin.title
         td= coin.ticker
-        td= coin.number_amount
-        td= coin.sum_amount
+        - if current_user
+          td= coin.number_amount
+          td= coin.sum_amount
+        - else
+          td= 0
+          td= 0
         td= link_to "Открыть", coin
