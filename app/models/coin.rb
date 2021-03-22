@@ -1,23 +1,12 @@
 class Coin < ApplicationRecord
   has_many :deals, dependent: :restrict_with_exception 
+  belongs_to :user
   validates :title, presence: true, length: { minimum: 3 }
   validates :ticker, presence: true
- 
-  #?????
-  def current_user_session
-    return @current_user_session if defined?(@current_user_session)
-    @current_user_session = UserSession.find
-  end
 
-  def current_user
-    return @current_user if defined?(@current_user)
-    @current_user = current_user_session && current_user_session.user
-  end
-  #?????
-  
-  def sum_amount
+  def sum_amount(current_user_id)
     sum_amount = 0
-    deals.where(user_id: current_user.id).map do |deal|
+    deals.where(user_id: current_user_id).map do |deal|
       if deal.operation == "Sale"
         sum_amount -= deal.sum
       else
@@ -27,9 +16,9 @@ class Coin < ApplicationRecord
     sum_amount
   end
 
-  def number_amount
+  def number_amount(current_user_id)
     number_amount = 0
-    deals.where(user_id: current_user.id).map do |deal|
+    deals.where(user_id: current_user_id).map do |deal|
       if deal.operation == "Sale"
         number_amount -= deal.number
       else

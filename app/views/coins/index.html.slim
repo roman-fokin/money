@@ -20,8 +20,8 @@ table.table
         td= coin.title
         td= coin.ticker
         - if current_user
-          td= coin.number_amount
-          td= coin.sum_amount
+          td= coin.number_amount(current_user.id)
+          td= coin.sum_amount(current_user.id)
         - else
           td= 0
           td= 0
