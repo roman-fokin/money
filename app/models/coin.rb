@@ -1,6 +1,5 @@
 class Coin < ApplicationRecord
   has_many :deals, dependent: :restrict_with_exception 
-  belongs_to :user
   validates :title, presence: true, length: { minimum: 3 }
   validates :ticker, presence: true
 
